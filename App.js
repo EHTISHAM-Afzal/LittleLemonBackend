@@ -6,6 +6,7 @@ import connectDB from './MongoDB/Connect.js';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 import TablesRoutes from "./Routes/BookingTable.js";
+import UserRoutes from "./Routes/User.js";
 
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(morgan("dev"));
 app.use("/api/products", ProductRoutes);
 app.use("/api/catagories", catagoriesRouter);
 app.use("/api/tables", TablesRoutes );
+app.use("/api/users", UserRoutes );
 
 
 const port = process.env.PORT || 3002;
