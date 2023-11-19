@@ -28,7 +28,7 @@ catagoriesRouter.get("/:id", async (req, res) => {
 
 catagoriesRouter.post("/", (req, res) => {
     const catagory = new Catagory({
-        id: req.body.id,
+        name: req.body.name,
     });
     const { error } = validateCatagory(req.body);
     if (error) return res.status(400).send(error.message);

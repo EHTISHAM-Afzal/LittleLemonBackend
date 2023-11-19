@@ -3,11 +3,22 @@ import { Product, validateProduct } from "../Models/ProductModel.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    await Product.find().populate("catagory")
-        .then((response) => res.send(response))
-        .catch((err) =>
-            res.status(400).send({ message: "Oops cant find the Product", error: err })
-        );
+    const { catagory } = req.query
+    if (catagory) {
+        console.log(catagory)
+        await Product.find({ catagory: catagory }).populate("catagory")
+            .then((response) => res.send(response))
+            .catch((err) =>
+                res.status(400).send({ message: "Oops cant find the Product", error: err })
+            );
+    }
+    else {
+        await Product.find().populate("catagory")
+            .then((response) => res.send(response))
+            .catch((err) =>
+                res.status(400).send({ message: "Oops cant find the Product", error: err })
+            );
+    }
 });
 
 router.get("/:id", async (req, res) => {
